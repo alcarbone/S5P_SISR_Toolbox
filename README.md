@@ -21,5 +21,5 @@ _/SOTA_ all state-of-the-art models, in particular "SRCNN" in _/SRCNN_, "PAN" in
 
 ## Results
 Once tested all the algorithms, if results == True, save_csv.py is run and the quality indices are saved in 
-/results as .csv files and the super-resoluted images as .mat files. Q, ERGAS, sCC and PSNR are saved for RR
+_/results_ as .csv files and the super-resoluted images as .mat files. Q, ERGAS, sCC and PSNR are saved for RR
 protocol and BRISQUE for FR protocol.
