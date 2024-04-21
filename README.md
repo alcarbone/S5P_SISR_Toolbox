@@ -1,6 +1,8 @@
 # S5P_SISR_Toolbox 
 Sentinel-5P Single-Image Super-Resolution Toolbox.
 
+Code for "Model-Based Super-Resolution for Sentinel-5P Data" paper available at https://ieeexplore.ieee.org/document/10499875?source=authoralert. 
+
 ## Environment
 All requirements for the environment used to run the codes are avilable in "requirements.txt" file.
 
