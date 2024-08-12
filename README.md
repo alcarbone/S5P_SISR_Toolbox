@@ -15,35 +15,35 @@ The toolbox is available in multiple public versions. Choose one according to yo
 
 * **Version 1.0.0** (/S5P_SISR_Toolbox_1_0_0) represents the first use of super-resolution methods on Sentinel-5P Level-1b data. The algorithms are tested on eight monochromatic images taken from two distinct orbits, corresponding to one channel for each detector. The images were simply cropped along- and across- track, with no additional pre-processing. 
 The algorithms available are:
- - Interpolation, in particular:
-   + Nearest-neighbour
-   + Linear
-   + Quadratic
-   + Cubic 
-   + Lanczos
-   + 23-tap
- - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
- - DL-based methods, in particular:
-   + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
-   + Our original neural network for S5P, i.e., **S5Net** fine-tuned independently for each channel.
+  - Interpolation, in particular:
+    + Nearest-neighbour
+    + Linear
+    + Quadratic
+    + Cubic 
+    + Lanczos
+    + 23-tap
+  - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
+  - DL-based methods, in particular:
+    + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
+    + Our original neural network for S5P, i.e., **S5Net** fine-tuned independently for each channel.
 * **Version 1.1.0** (/S5P_SISR_Toolbox_1_1_0) illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/S5P_SISR_Toolbox_1_1_0/data). The [IQA](/S5P_SISR_Toolbox_1_1_0/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
 The algorithms available are:
- - Interpolation, in particular:
-   + Nearest-neighbour
-   + Linear
-   + Quadratic
-   + Cubic 
-   + Lanczos
-   + 23-tap
- - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
- - DL-based methods, in particular:
-   + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
-   + Our original neural network for S5P, i.e., **S5Net** fine-tuned with different strategies:
-     1. _S5Net_: independent channel per channel fine-tuning.
-     2. _GSR_S5Net_st_: static 2-directional cascade fine-tuning.
-     3. _DSR_S5Net_st_: static 8-directional cascade fine-tuning.
-     4. _GSR_S5Net_dyn_: dynamic 2-directional cascade fine-tuning.
-     5. _DSR_S5Net_dyn_: dynamic 8-directional cascade fine-tuning.
+  - Interpolation, in particular:
+    + Nearest-neighbour
+    + Linear
+    + Quadratic
+    + Cubic 
+    + Lanczos
+    + 23-tap
+  - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
+  - DL-based methods, in particular:
+    + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
+    + Our original neural network for S5P, i.e., **S5Net** fine-tuned with different strategies:
+      1. _S5Net_: independent channel per channel fine-tuning.
+      2. _GSR_S5Net_st_: static 2-directional cascade fine-tuning.
+      3. _DSR_S5Net_st_: static 8-directional cascade fine-tuning.
+      4. _GSR_S5Net_dyn_: dynamic 2-directional cascade fine-tuning.
+      5. _DSR_S5Net_dyn_: dynamic 8-directional cascade fine-tuning.
 
 ## Environment
 The [requirements.txt](/requirements.txt) file contains all the specifications for the environment in which the code will be executed. Please install all the required before using the toolbox by executing the following command:
