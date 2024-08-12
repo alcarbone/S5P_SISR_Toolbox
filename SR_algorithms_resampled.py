@@ -63,7 +63,7 @@ from scripts.SOTA.EDSR.EDSR_arch import EDSR
 from scripts.SOTA.PAN.PAN_arch import PAN
 from scripts.SOTA.HAT.HAT_arch import HAT
 
-from scripts.IQA.indexes_evaluation_SR import indexes_evaluation_SR
+from scripts.IQA2.indexes_evaluation_SR import indexes_evaluation_SR
 
 Qblocks_size = 32 
 th_values = 0
