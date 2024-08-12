@@ -37,7 +37,7 @@ The algorithms available are:
     + 23-tap
   - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
   - DL-based methods, in particular:
-    + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
+    + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [VDSR](https://arxiv.org/abs/1511.04587), [EDSR](https://arxiv.org/abs/1707.02921), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
     + Our original neural network for S5P, i.e., **S5Net** fine-tuned with different strategies:
       1. _S5Net_: independent channel per channel fine-tuning.
       2. _GSR_S5Net_st_: static 2-directional cascade fine-tuning.
