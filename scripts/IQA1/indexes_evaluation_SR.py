@@ -16,7 +16,7 @@ All rights reserved. This work should only be used for nonprofit purposes.
            I_F:                Fused Image;
            I_GT:               Ground-Truth image;
            ratio:              Scale ratio between MS and PAN. Pre-condition: Integer value;
-           data_range:         The range of the data;
+           data_range:     The range of the data;
            L:                  Image radiometric resolution; 
            Q_blocks_size:      Block size of the Q-index locally applied;
            flag_cut_bounds:    Cut the boundaries of the viewed Panchromatic image;
@@ -35,7 +35,6 @@ All rights reserved. This work should only be used for nonprofit purposes.
 """
 
 import numpy as np
-
 from scripts.IQA.ERGAS import ERGAS 
 from scripts.IQA.SAM import SAM 
 from scripts.IQA.Q import Q
@@ -43,12 +42,7 @@ from scripts.IQA.q2n import q2n
 from scripts.IQA.RMSE import RMSE
 from scripts.IQA.sCC import sCC
 
-from scripts.resize_image import resize_image
-
-def indexes_evaluation_SR(I_F,I_LR,I_GT,ratio,data_range,GNyq_x,GNyq_y,max_img,Qblocks_size=32,flag_cut_bounds=0,dim_cut=0,th_values=0,K1=0,K2=0):
-    I_F = I_F.astype("float32")
-    I_LR = I_LR.astype("float32")
-    I_GT = I_GT.astype("float32")
+def indexes_evaluation_SR(I_F,I_GT,ratio,data_range,Qblocks_size=32,flag_cut_bounds=0,dim_cut=0,th_values=0):
     
     if(len(I_F.shape) == 2):
         I_F1 = np.zeros([I_F.shape[0],I_F.shape[1],1])
@@ -59,23 +53,6 @@ def indexes_evaluation_SR(I_F,I_LR,I_GT,ratio,data_range,GNyq_x,GNyq_y,max_img,Q
         I_GT1 = np.zeros([I_GT.shape[0],I_GT.shape[1],1])
         I_GT1[:,:,0] = I_GT
         I_GT = I_GT1
-        
-    Dlambda = 1
-    if (I_GT.shape[2] > 2 and I_GT.shape[2] < 300 and I_LR is not None):
-        I_F_LR = np.zeros([I_F.shape[0]//ratio,I_F.shape[1]//ratio,I_F.shape[2]])
-        for ii in range(0,I_F.shape[2]):
-            a = resize_image(I_F[:,:,ii],ratio,GNyq_x[ii],GNyq_y[ii])
-            I_F_LR[:,:,ii] = a[:,:,0]
-        q2, q2n_map = q2n(I_LR, I_F_LR, Qblocks_size, Qblocks_size)
-        Dlambda = 1 - q2
-    elif (I_GT.shape[2] >= 300):
-        I_F_LR = np.zeros([I_F.shape[0]//ratio,I_F.shape[1]//ratio,I_F.shape[2]])
-        for ii in range(0,I_F.shape[2]):
-            a = resize_image(I_F[:,:,ii],ratio,GNyq_x[ii],GNyq_y[ii])
-            I_F_LR[:,:,ii] = a[:,:,0]
-        q2, q2n_map = q2n(I_LR[:,:,::34], I_F_LR[:,:,::34], Qblocks_size, Qblocks_size)
-        Dlambda = 1 - q2
-        
     
     """ cut bounds """
     if (flag_cut_bounds == 1):
@@ -99,39 +76,27 @@ def indexes_evaluation_SR(I_F,I_LR,I_GT,ratio,data_range,GNyq_x,GNyq_y,max_img,Q
             SAM_map = np.zeros(I_GT.shape)
             Q2n_index = 0 
             Q2n_index_map = np.zeros(I_GT.shape)
-            
+               
     else :
         
         SAM_index, SAM_map = SAM(I_GT,I_F)
+        Q2n_index, Q2n_index_map = q2n(I_GT, I_F, Qblocks_size, Qblocks_size)
         
-        Q2n_index = 0
-        if I_GT.shape[2] < 300:
-            Q2n_index, Q2n_index_map = q2n(I_GT, I_F, Qblocks_size, Qblocks_size)
-        else:
-            Q2n_index, Q2n_index_map = q2n(I_GT[:,:,::34], I_F[:,:,::34], Qblocks_size, Qblocks_size)
-     
+        
     ERGAS_index = ERGAS(I_GT,I_F,ratio)
+  
     
     if np.remainder(Qblocks_size,2) == 0:
-        Q_index = Q(I_GT,I_F,Qblocks_size + 1, data_range[1]-data_range[0], K1, K2)
+        Q_index = Q(I_GT,I_F,Qblocks_size + 1, data_range[1]-data_range[0])
     else:
-        Q_index = Q(I_GT,I_F,Qblocks_size, data_range[1]-data_range[0], K1, K2)
+        Q_index = Q(I_GT,I_F,Qblocks_size, data_range[1]-data_range[0])
     
-    sCC_index = 0
-    if I_GT.shape[2] < 300:
-        sCC_index = sCC(I_GT,I_F)
-    else:
-        sCC_index = sCC(I_GT[:,:,::34],I_F[:,:,::34])
+    
+    
+    sCC_index = sCC(I_GT,I_F)
     
     RMSE_index = RMSE(I_GT,I_F)
     
-    if (len(I_GT.shape) == 2 or (len(I_GT.shape) == 3 and I_GT.shape[2] == 1)):
-        PSNR_index = 20*np.log10(data_range[1]/RMSE(I_GT,I_F))
-    else:
-        PSNRs = list()
-        for ii in range(I_GT.shape[2]):
-            RMSE_idx = np.sqrt(np.mean((I_F[:,:,ii]-I_GT[:,:,ii])**2))
-            PSNRs.append(20*np.log10(max_img[ii]/RMSE_idx))
-        PSNR_index = np.mean(PSNRs)
-    
-    return Q2n_index, Dlambda, Q_index, ERGAS_index, SAM_index, sCC_index, RMSE_index, PSNR_index
+    PSNR_index = 20*np.log10(data_range[1]/RMSE(I_GT,I_F))
+
+    return Q2n_index, Q_index, ERGAS_index, SAM_index, sCC_index, RMSE_index, PSNR_index
