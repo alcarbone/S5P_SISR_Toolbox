@@ -1,26 +1,62 @@
-# S5P_SISR_Toolbox 
-Sentinel-5P Single-Image Super-Resolution Toolbox.
+# Introducing the pioneering super-resolution toolbox for Sentinel-5P data
 
-Code for "Model-Based Super-Resolution for Sentinel-5P Data" paper available at https://ieeexplore.ieee.org/document/10499875?source=authoralert. 
+A set of single-image super-resolution (SISR) algorithms designed specifically for Sentinel-5Precursor (S5P) Level-1b radiance data is offered herein.
+
+S5P is a single-satellite mission launched by the European Space Agency (ESA) as part of the Copernicus program to monitor a large amount of gaseous air pollutants. Some helpful information on S5P is accessible on [ESA's official wiki](https://sentiwiki.copernicus.eu/web/s5p-mission). 
+
+Two distinct types of S5P data are publicly accessible via the [Copernicus browser](https://browser.dataspace.copernicus.eu/?zoom=5&lat=50.16282&lng=20.78613&themeId=DEFAULT-THEME&visualizationUrl=U2FsdGVkX19w36SwRKT6qYfJpcRdRdP6X9Z8Cc7xpWPmL6BW1rnaazx1QB4tTcqiQ58clVWtTZih7gZABvqUZFPCvgWbJDDvyxY7AoIg%2BnNKuiMDflT7morMQZBHoJjg&datasetId=S2_L2A_CDAS&demSource3D=%22MAPZEN%22&cloudCoverage=30&dateMode=SINGLE): Level-1b radiance data is split per detector's halves (S5P's payload, TROPOMI, has four detectors), whereas Level-2 data is split per product. More information about the data is publicly available in [S5P official reports](https://sentiwiki.copernicus.eu/web/s5p-documents). We chose to work with Level-1b images.
+
+For further information, refer to our publications on this topic:
+[[1]](https://ieeexplore.ieee.org/document/10499875?source=authoralert) A. Carbone, R. Restaino, G. Vivone and J. Chanussot, "Model-Based Super-Resolution for Sentinel-5P Data," in IEEE Transactions on Geoscience and Remote Sensing, vol. 62, pp. 1-16, 2024, Art no. 5617716, doi: 10.1109/TGRS.2024.3387877.
+[[2]](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12733/1273306/Super-resolution-techniques-for-Sentinel-5Pproducts/10.1117/12.2684083.short#_=_) A. Carbone, R. Restaino, and G. Vivone, "Super-resolution techniques for Sentinel-5P products," in Image and Signal Processing for Remote Sensing XXIX, vol. 12733, pp. 39-48, SPIE, 2023. 
+
+## Versions
+The toolbox is available in multiple public versions. Choose one according to your needs.
+
+* *(Version 1.0.0)[/S5P_SISR_Toolbox_1_0_0]* represents the first use of super-resolution methods on Sentinel-5P Level-1b data. The algorithms are tested on eight monochromatic images taken from two distinct orbits, corresponding to one channel for each detector. The images were simply cropped along- and across- track, with no additional pre-processing. 
+The algorithms available are:
+ - Interpolation, in particular:
+  + Nearest-neighbour
+  + Linear
+  + Quadratic
+  + Cubic 
+  + Lanczos
+  + 23-tap
+ - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
+ - DL-based methods, in particular:
+  + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
+  + Our original neural network for S5P, i.e., *S5Net* fine-tuned independently for each channel.
+* *(Version 1.1.0)[/S5P_SISR_Toolbox_1_1_0]* illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/S5P_SISR_Toolbox_1_1_0/data). The [IQA](/S5P_SISR_Toolbox_1_1_0/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
+The algorithms available are:
+ - Interpolation, in particular:
+  + Nearest-neighbour
+  + Linear
+  + Quadratic
+  + Cubic 
+  + Lanczos
+  + 23-tap
+ - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
+ - DL-based methods, in particular:
+  + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
+  + Our original neural network for S5P, i.e., *S5Net* fine-tuned with different strategies:
+   1. _S5Net_: independent channel per channel fine-tuning.
+   2. _GSR_S5Net_st_: static 2-directional cascade fine-tuning.
+   3. _DSR_S5Net_st_: static 8-directional cascade fine-tuning.
+   4. _GSR_S5Net_dyn_: dynamic 2-directional cascade fine-tuning.
+   5. _DSR_S5Net_dyn_: dynamic 8-directional cascade fine-tuning.
 
 ## Environment
-All requirements for the environment used to run the codes are available in "requirements.txt" file.
+The [requirements.txt](/requirements.txt) file contains all the specifications for the environment in which the code will be executed. Please install all the required before using the toolbox by executing the following command:
 
-## How to test
-The main file is "Main_SR_RR_Benchmark.py" from which it is possible to choose the configuration of the image
-to test the algorithms on. The following algorithms are tested: bi-cubic interpolation ("Cubic"), non-blind 
-deconvolution solved with CGA ("CGA"), SRCNN network ("SRCNN"), VDSR network ("VDSR"), EDSR network ("EDSR"),
-PAN network ("PAN"), HAT network ("HAT"), S5Net trained with independent fine-tuning ("S5Net"), S5Net trained with 
-cascade fine-tuning: "GSR-S5Net-st", "GSR-S5Net-dyn", "DSR-S5Net-st", and "DSR-S5Net-dyn". 
+```
+pip install -r requirements.txt
+```
 
-All utility scripts are in the directory _/scripts_.
+## Test the algorithms
+For all versions, the main file is always called _Main_SR_Benchmark.py_ from which it is possible to choose the configuration to test the algorithms with. From this file the script _SR_algorithms.py_ is called and all algorithms are tested. 
 
-## Pre-trained models
-Download pre-trained models from ! and put them in _/trained_models/S5Net_.
-
-## Data 
-Download pre-processed data from [here](https://drive.google.com/drive/folders/1vG4QOVafxFis5HinjvQmPkquoDnIf9R9?usp=drive_link) and put them in _/data_.
-
-## Results
-Once tested all the algorithms, if results == True, the quality indices are saved in 
-_/results_ as .csv files and the super-resolved images as .nc files. 
+When
+```
+results = True
+```
+the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
