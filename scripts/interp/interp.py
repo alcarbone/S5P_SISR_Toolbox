@@ -21,6 +21,9 @@ All rights reserved. This work should only be used for nonprofit purposes.
                
            Outputs: SR_int: SR output image.
            
+ References:
+       B. Aiazzi, S. Baronti, M. Selva, and L. Alparone, ‘Bi-cubic interpolation for shift-free pan-sharpening’, ISPRS Journal of Photogrammetry and Remote Sensing, vol. 86, pp. 65–76, Dec. 2013, doi: 10.1016/j.isprsjprs.2013.09.007.
+
 """
 
 import sys
