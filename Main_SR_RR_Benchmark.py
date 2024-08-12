@@ -9,47 +9,97 @@ All rights reserved. This work should only be used for nonprofit purposes.
 
 """
  Description:
-           Choose the configuration:
-               * ratio: scaling ratio for testing super-resolution approaches;
-               * im_tag: name of the chosen image;
-               * protocol: RR or FR protocol;
-               * flag_cut_bounds: if 0 image borders are not cropped;
-               * dim_cut: if flag_cut_bounds == 1, number of pixels cropped from 
-                   each border;
-               * results: if True all the results and images are saved in the 
-                   directory ./results as .csv and .nc files, respectively.
+           Choose the configuration to test on.
 """
 
 from IPython import get_ipython
 get_ipython().run_line_magic('reset','-sf')
 
 import os
-import numpy as np
-import scipy.io as sio
-
-from scripts.resize_image import resize_image
 
 #%%
-"""Configuration"""
+""" Configuration """
 
 ratio = 4
-
-im_tag = 'US'
-protocol = 'RR'
 
 flag_cut_bounds = 1
 dim_cut = 15
 
 results = True
 
-if results:
-    dirs_res_path = f'./results/x{ratio}/{protocol}/{im_tag}'
+resampled = False
+
+if not resampled:
+    Qblocks_size = 32 
+    th_values = 0
+    flag_cut_bounds = 1
+    dim_cut = 15
     
-    if not os.path.isdir(dirs_res_path):
-        os.makedirs(dirs_res_path)       
+    L = 14
 
-execfile('SR_algorithms.py')
+    protocols = ['RR']
+    bands = ['UV','UVIS','NIR','SWIR']
+    im_tags = ['IN','US']
 
-if results:
-    wr.writerows(l)
-    f.close()
+    for protocol in protocols:
+        for im_tag in im_tags:
+            for band in bands:
+
+                if (band == 'UV'):
+                    num = 1
+                elif (band == 'UVIS'):
+                    num = 2
+                elif (band == 'NIR'):
+                    num = 3
+                else:
+                    num = 4
+                    
+                dirs = './data/not_resampled/{}.{}/'.format(num,band)
+                
+                if (band == 'UV'):
+                    GNyq_el = 0.36
+                    GNyq_az = 0.37
+                elif (band == 'UVIS' or band == 'NIR'):
+                    GNyq_el = 0.74
+                    GNyq_az = 0.44
+                else:
+                    GNyq_el = 0.20
+                    GNyq_az = 0.15
+                    
+                file_name = dirs + '/' + im_tag + '.mat'
+                ds = sio.loadmat(file_name)
+                radiance_GT = np.array(ds['radiance']) 
+                
+                radiance_LR = resize_image(radiance_GT, ratio, GNyq_el, GNyq_az)
+                radiance_GT = radiance_GT[0:(radiance_LR.shape[0]*ratio),0:(radiance_LR.shape[1]*ratio)]
+                radiance_LR = np.squeeze(radiance_LR)
+                
+                GNyq_x = GNyq_el
+                GNyq_y = GNyq_az
+                
+                max_val = np.amax(radiance_LR) 
+                radiance_range = [0, 2*max_val]
+                
+                if results:
+                    dirs_res_path = './results/not_resampled/x{}'.format(ratio) + '/' + protocol + '/{}.{}'.format(num,band)
+                    
+                    if not os.path.isdir(dirs_res_path):
+                        os.makedirs(dirs_res_path)
+                
+                execfile('SR_algorithms_not_resampled.py')
+else:
+    
+    im_tag = 'US'
+    protocol = 'RR'
+    
+    if results:
+        dirs_res_path = f'./results/resampled/x{ratio}/{protocol}/{im_tag}'
+        
+        if not os.path.isdir(dirs_res_path):
+            os.makedirs(dirs_res_path)       
+    
+    execfile('SR_algorithms_resampled.py')
+    
+    if results:
+        wr.writerows(l)
+        f.close()

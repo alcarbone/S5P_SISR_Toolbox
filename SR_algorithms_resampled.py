@@ -80,7 +80,7 @@ if not (os.path.isfile(dirs_res_path + '/all_idxs.csv')):
 #%%
 """Prepare image"""
 
-s5p_path = f"data/{im_tag}.nc"
+s5p_path = f"data/resampled/{im_tag}.nc"
 
 s5p_img_total = np.asarray(h5py.File(s5p_path)['radiance'])
 s5p_lat = np.asarray(h5py.File(s5p_path)['latitude'])
@@ -796,7 +796,7 @@ if results:
 
 n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
-epochs_path = f'./trained_models/S5Net/S5Net/{im_tag}/'
+epochs_path = f'./trained_models/S5Net/resampled/S5Net/{im_tag}/'
 
 img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
@@ -905,7 +905,7 @@ if results:
 
 n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
-epochs_path = f'./trained_models/S5Net/DSR-S5Net-st/{im_tag}/'
+epochs_path = f'./trained_models/S5Net/resampled/DSR-S5Net-st/{im_tag}/'
 
 img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
@@ -1014,7 +1014,7 @@ if results:
 
 n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
-epochs_path = f'./trained_models/S5Net/DSR-S5Net-dyn/{im_tag}/'
+epochs_path = f'./trained_models/S5Net/resampled/DSR-S5Net-dyn/{im_tag}/'
 
 img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
@@ -1123,7 +1123,7 @@ if results:
 
 n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
-epochs_path = f'./trained_models/S5Net/DSR-S5Net-st/{im_tag}/'
+epochs_path = f'./trained_models/S5Net/resampled/DSR-S5Net-st/{im_tag}/'
 
 img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
@@ -1232,7 +1232,7 @@ if results:
 
 n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
-epochs_path = f'./trained_models/S5Net/DSR-S5Net-dyn/{im_tag}/'
+epochs_path = f'./trained_models/S5Net/resampled/DSR-S5Net-dyn/{im_tag}/'
 
 img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
