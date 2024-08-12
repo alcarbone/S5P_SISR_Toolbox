@@ -1,7 +1,7 @@
 All images in this directory are extracted from level-1b Sentinel-5P radiance products freely available from Copernicus browser: https://browser.dataspace.copernicus.eu/?zoom=5&lat=50.16282&lng=20.78613&themeId=DEFAULT-THEME&visualizationUrl=U2FsdGVkX1%2F9LF5Al1oqZalcdpGVkR1qrWF1qXaGBGJgtUPGvCxewM2prABJE8y0ckZxFpQGkP8qedMcSC960rAQW5eAu%2BFhiwrWaqmkEsoA6tRwveOS5r61S3jGWLBZ&datasetId=S2_L2A_CDAS&demSource3D=%22MAPZEN%22&cloudCoverage=30&dateMode=SINGLE.
 
 Two scenes are retrieved from:
-	o **IN**  -> S5P_OFFL_L1B_RA_BDX_20230401T071049_20230401T085220_28317_03_020100_20230401T103831.nc, with _X = {2,4,6,8}_.
+	o **IN**  -> S5P_OFFL_L1B_RA_BDX_20230401T071049_20230401T085220_28317_03_020100_20230401T103831.nc, with _X={2,4,6,8}_.
 	o **US** -> S5P_OFFL_L1B_RA_BDX_20230709T195054_20230709T213224_29729_03_020100_20230709T232157.nc, with _X = {2,4,6,8}_.
 
 Only the central channel of each image is retrieved:
