@@ -11,22 +11,9 @@ For further information, refer to our publications on this topic:
 * [[2]](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12733/1273306/Super-resolution-techniques-for-Sentinel-5Pproducts/10.1117/12.2684083.short#_=_) A. Carbone, R. Restaino, and G. Vivone, "Super-resolution techniques for Sentinel-5P products," in Image and Signal Processing for Remote Sensing XXIX, vol. 12733, pp. 39-48, SPIE, 2023. 
 
 ## Versions
-The toolbox is available in multiple public versions. Choose one according to your needs.
+This is **Version 1.1.0** of the S5P_SISR_Toolbox.
 
-* **Version 1.0.0** represents the first use of super-resolution methods on Sentinel-5P Level-1b data. The algorithms are tested on eight monochromatic images taken from two distinct orbits, corresponding to one channel for each detector. The images were simply cropped along- and across- track, with no additional pre-processing. 
-The algorithms available are:
-  - Interpolation, in particular:
-    + Nearest-neighbour
-    + Linear
-    + Quadratic
-    + Cubic 
-    + Lanczos
-    + 23-tap
-  - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
-  - DL-based methods, in particular:
-    + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
-    + Our original neural network for S5P, i.e., **S5Net** fine-tuned independently for each channel.
-* **Version 1.1.0** illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/S5P_SISR_Toolbox_1_1_0/data). The [IQA](/S5P_SISR_Toolbox_1_1_0/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
+Version 1.1.0 illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/S5P_SISR_Toolbox_1_1_0/data). The [IQA](/S5P_SISR_Toolbox_1_1_0/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
 The algorithms available are:
   - Interpolation, in particular:
     + Nearest-neighbour
@@ -53,7 +40,7 @@ pip install -r requirements.txt
 ```
 
 ## Test the algorithms
-For all versions, the main file is always called _Main_SR_Benchmark.py_ from which it is possible to choose the configuration to test the algorithms with. From this file the script _SR_algorithms.py_ is called and all algorithms are tested. 
+The main file is called _Main_SR_Benchmark.py_ from which it is possible to choose the configuration to test the algorithms with. From this file the script _SR_algorithms.py_ is called and all algorithms are tested. 
 
 When the variable _results_ is true, i.e.,
 ```
