@@ -16,6 +16,10 @@ from IPython import get_ipython
 get_ipython().run_line_magic('reset','-sf')
 
 import os
+import numpy as np
+import scipy.io as sio
+
+from scripts.resize_image import resize_image
 
 #%%
 """ Configuration """
@@ -25,7 +29,7 @@ ratio = 4
 flag_cut_bounds = 1
 dim_cut = 15
 
-results = True
+results = False
 
 Qblocks_size = 32 
 th_values = 0
@@ -51,7 +55,7 @@ for protocol in protocols:
             else:
                 num = 4
                 
-            dirs = './data{}.{}/'.format(num,band)
+            dirs = './data/{}.{}/'.format(num,band)
             
             if (band == 'UV'):
                 GNyq_el = 0.36
@@ -83,4 +87,4 @@ for protocol in protocols:
                 if not os.path.isdir(dirs_res_path):
                     os.makedirs(dirs_res_path)
             
-            execfile('SR_algorithms_1_0.py')
+            execfile('SR_algorithms.py')

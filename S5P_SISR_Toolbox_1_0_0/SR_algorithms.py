@@ -67,14 +67,7 @@ from scripts.deconv.deconv import deconv
 from scripts.IQA.indexes_evaluation_SR import indexes_evaluation_SR
 
 from scripts.SOTA.SRCNN.SRCNN_arch import SRCNN
-from scripts.SOTA.FSRCNN.FSRCNN_arch import FSRCNN
-from scripts.SOTA.VDSR.VDSR_arch import VDSR
-from scripts.SOTA.ESPCN.ESPCN_arch import ESPCN
-from scripts.SOTA.EDSR.EDSR_arch import EDSR
-from scripts.SOTA.RCAN.RCAN_arch import RCAN
-from scripts.SOTA.RankSRGAN.RankSRGAN_arch import SRResNet
 from scripts.SOTA.PAN.PAN_arch import PAN
-from scripts.SOTA.BSRN.BSRN_arch import BSRN
 from scripts.SOTA.HAT.HAT_arch import HAT
 
 from scripts.S5Net.S5Net_arch import S5Net
