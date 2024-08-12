@@ -19,7 +19,7 @@ All utility scripts are in the directory _/scripts_.
 Download pre-trained models from ! and put them in _/trained_models/S5Net_.
 
 ## Data 
-Download pre-processed data from ! and put them in _/data_.
+Download pre-processed data from [here](https://drive.google.com/drive/folders/1vG4QOVafxFis5HinjvQmPkquoDnIf9R9?usp=drive_link) and put them in _/data_.
 
 ## Results
 Once tested all the algorithms, if results == True, the quality indices are saved in 
