@@ -27,9 +27,9 @@ dim_cut = 15
 
 results = True
 
-resampled = False
+version_toolbox = 1 # 1.0 or 2.0
 
-if not resampled:
+if version_toolbox == 1:
     Qblocks_size = 32 
     th_values = 0
     flag_cut_bounds = 1
@@ -86,8 +86,9 @@ if not resampled:
                     if not os.path.isdir(dirs_res_path):
                         os.makedirs(dirs_res_path)
                 
-                execfile('SR_algorithms_not_resampled.py')
-else:
+                execfile('SR_algorithms_1_0.py')
+                
+elif version_toolbox == 2:
     
     im_tag = 'US'
     protocol = 'RR'
@@ -98,7 +99,7 @@ else:
         if not os.path.isdir(dirs_res_path):
             os.makedirs(dirs_res_path)       
     
-    execfile('SR_algorithms_resampled.py')
+    execfile('SR_algorithms_2_0.py')
     
     if results:
         wr.writerows(l)
