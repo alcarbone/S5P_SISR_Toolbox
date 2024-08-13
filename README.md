@@ -16,12 +16,7 @@ This is **Version 1.1.0** of the S5P_SISR_Toolbox.
 Version 1.1.0 illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/S5P_SISR_Toolbox_1_1_0/data). The [IQA](/S5P_SISR_Toolbox_1_1_0/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
 The algorithms available are:
   - Interpolation, in particular:
-    + Nearest-neighbour
-    + Linear
-    + Quadratic
-    + Cubic 
-    + Lanczos
-    + 23-tap
+    + Cubic interpolation
   - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
   - DL-based methods, in particular:
     + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [VDSR](https://arxiv.org/abs/1511.04587), [EDSR](https://arxiv.org/abs/1707.02921), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
@@ -31,6 +26,11 @@ The algorithms available are:
       3. _DSR_S5Net_st_: static 8-directional cascade fine-tuning.
       4. _GSR_S5Net_dyn_: dynamic 2-directional cascade fine-tuning.
       5. _DSR_S5Net_dyn_: dynamic 8-directional cascade fine-tuning.
+
+This is a simple graphical representation of the proposed methodology, i.e., S5Net.
+![S5Net architecture](/figs/S5Net.jpeg)
+For clarity, we also report here the graphical representation of the time-saving dynamic multi-directional cascade fine-tuning we propose in contrast to the traditional fine-tuning. 
+![Fine-tunings](/figs/finetuning.jpeg)
 
 ## Environment
 The [_requirements.txt_](/requirements.txt) file contains all the specifications for the environment in which the code will be executed. Please install all the required before using the toolbox by executing the following command:
@@ -46,4 +46,6 @@ When the variable _results_ is true, i.e.,
 ```
 results = True
 ```
-the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
+the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results_. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
+
+## Main results
