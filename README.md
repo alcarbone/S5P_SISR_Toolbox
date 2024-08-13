@@ -46,4 +46,4 @@ When the variable _results_ is true, i.e.,
 ```
 results = True
 ```
-the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
+the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results_. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
