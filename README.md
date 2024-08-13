@@ -17,16 +17,12 @@ This is **Version 1.0.0** of the S5P_SISR_Toolbox.
 Version 1.0.0 represents the first use of super-resolution methods on Sentinel-5P Level-1b data. The algorithms are tested on eight monochromatic images taken from two distinct orbits, corresponding to one channel for each detector. The images were simply cropped along- and across- track, with no additional pre-processing. 
 The algorithms available are:
   - Interpolation, in particular:
-    + Nearest-neighbour
-    + Linear
-    + Quadratic
-    + Cubic 
-    + Lanczos
-    + 23-tap
+    + Cubic interpolation
   - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
   - DL-based methods, in particular:
     + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
     + Our original neural network for S5P, i.e., **S5Net** fine-tuned independently for each channel.
+The ablation study we conducted by substituting the transposed convolutional layer with cubic upsampling in our S5Net is available too.
       
 This is a simple graphical representation of the proposed methodology, i.e., S5Net.
 ![S5Net architecture](/figs/S5Net.jpeg)
