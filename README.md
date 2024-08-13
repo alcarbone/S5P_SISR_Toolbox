@@ -13,7 +13,7 @@ For further information, refer to our publications on this topic:
 ## Versions
 This is **Version 1.1.0** of the S5P_SISR_Toolbox.
 
-Version 1.1.0 illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/S5P_SISR_Toolbox_1_1_0/data). The [IQA](/S5P_SISR_Toolbox_1_1_0/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
+Version 1.1.0 illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/data). The [IQA](/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
 The algorithms available are:
   - Interpolation, in particular:
     + Cubic interpolation
