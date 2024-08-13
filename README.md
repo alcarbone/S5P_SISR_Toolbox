@@ -27,6 +27,9 @@ The algorithms available are:
   - DL-based methods, in particular:
     + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
     + Our original neural network for S5P, i.e., **S5Net** fine-tuned independently for each channel.
+      
+This is a simple graphical representation of the proposed methodology, i.e., S5Net.
+![S5Net architecture](/figs/S5Net.jpeg)
 
 ## Environment
 The [_requirements.txt_](/requirements.txt) file contains all the specifications for the environment in which the code will be executed. Please install all the required before using the toolbox by executing the following command:
@@ -42,4 +45,14 @@ When the variable _results_ is true, i.e.,
 ```
 results = True
 ```
-the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
+the quality indices are saved as .csv files and the super-resolved images as .mat files into the directory _/results/x{ratio}/{protocol}_, as already shown in the repository. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
+
+## Main results
+The main results we obtained are herein shown. Our main goal was to design algorithms dependent on the imaging model of S5P (__match_ for short). In order to demonstrate that our approach is better than algorithms usually employed in the literature and the same algorithm we propose but trained independently on how the sensors acquired the images in the first place (__nomatch_ for short), we show the main visual results at full resolution for both the datasets employed, i.e., IN and US. 
+
+![IN dataset](/figs/IN_FR_results.jpeg)
+![US dataset](/figs/US_FR_results.jpeg)
+
+The two approaches (__match_ and __nomatch_), for both the algorithms we designed, are compared also in terms of their pixels' errors on both datasets.
+
+![MSE maps](/figs/MSEs_maps.jpeg)
