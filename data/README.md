@@ -1,14 +1,17 @@
-All images in this directory are extracted from level-1b Sentinel-5P radiance products freely available from [Copernicus browser](https://browser.dataspace.copernicus.eu/?zoom=5&lat=50.16282&lng=20.78613&themeId=DEFAULT-THEME&visualizationUrl=U2FsdGVkX1%2F9LF5Al1oqZalcdpGVkR1qrWF1qXaGBGJgtUPGvCxewM2prABJE8y0ckZxFpQGkP8qedMcSC960rAQW5eAu%2BFhiwrWaqmkEsoA6tRwveOS5r61S3jGWLBZ&datasetId=S2_L2A_CDAS&demSource3D=%22MAPZEN%22&cloudCoverage=30&dateMode=SINGLE).
+All images in this directory are extracted from level-1b Sentinel-5P radiance products freely available from [Copernicus browser](https://browser.dataspace.copernicus.eu/?zoom=5&lat=50.16282&lng=20.78613&themeId=DEFAULT-THEME&visualizationUrl=U2FsdGVkX1%2F9LF5Al1oqZalcdpGVkR1qrWF1qXaGBGJgtUPGvCxewM2prABJE8y0ckZxFpQGkP8qedMcSC960rAQW5eAu%2BFhiwrWaqmkEsoA6tRwveOS5r61S3jGWLBZ&datasetId=S2_L2A_CDAS&demSource3D=%22MAPZEN%22&cloudCoverage=30&dateMode=SINGLE) and are available [here](https://drive.google.com/drive/folders/1WEGAUSZZ1fKLxAIbLhMOqNDzpU5OjmfW?usp=drive_link).
 
 Two scenes are retrieved from:
-* **IN**  -> S5P_OFFL_L1B_RA_BDX_20230401T071049_20230401T085220_28317_03_020100_20230401T103831.nc, with _X = {2,4,6,8}_.
-* **US** -> S5P_OFFL_L1B_RA_BDX_20230709T195054_20230709T213224_29729_03_020100_20230709T232157.nc, with _X = {2,4,6,8}_.
+* **IN**  -> S5P_OFFL_L1B_RA_BDX_20230401T071049_20230401T085220_28317_03_020100_20230401T103831.nc, X = {2,3,4,5,6,7,8}.
+* **US** -> S5P_OFFL_L1B_RA_BDX_20230709T195054_20230709T213224_29729_03_020100_20230709T232157.nc, X = {2,3,4,5,6,7,8}.
 
-Only the central channel of each image is retrieved:
-* ~300 nm for UV (270-320 nm), _X = 2_.
-* ~400 nm for UVIS (320-490 nm), _X = 4_.
-* ~725 nm for NIR (710-775 nm), _X = 6_.
-* ~2343 nm for SWIR (2305-2385 nm), _X = 8_.
+BD1 is avoided as its signal-to-noise ratio is quite low and its minimum resolution is too low.
 
-The images have a size of 512x256. The indices along-track are 2561-3073, while the indices across-track are 66-322 for all detectors except for SWIR (in this case the whole swath is considered).
+The orbits are all pre-processed in this way:
+* The concatenated images are cropped across-track in the pixels whose across-track resolution is maximum equal to 8 km.
+* The interesting maximum and minimum latitudes are chosen and the orbit is cropped along-track in the chosen area.
+* An evenly distributed and geometrically aligned grid of latitudes and longitudes is created from the available coordinates (no extrapolation of data is performed).
+* The image is resampled with linear interpolation in the given grids.
+
+
+
 

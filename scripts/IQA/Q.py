@@ -17,7 +17,8 @@ All rights reserved. This work should only be used for nonprofit purposes.
            I1:         First multispectral image;
            I2:         Second multispectral image;
            L:          Radiometric resolution;
-           data_range: The range of the data.
+           data_range: The range of the data;
+           K1, K2:     Regularization parameters for SSIM.
 
  Outputs:
            Q_avg:      Q index averaged on all bands.
@@ -35,7 +36,7 @@ All rights reserved. This work should only be used for nonprofit purposes.
 from skimage.metrics import structural_similarity as ssim
 import numpy as np
 
-def Q(I1,I2,S,data_range):
+def Q(I1,I2,S,data_range,K1,K2):
     
     I1
 
@@ -47,6 +48,6 @@ def Q(I1,I2,S,data_range):
         Q_orig = np.zeros((I1.shape[2],1))
     
         for idim in range(I1.shape[2]):
-            Q_orig[idim] = ssim(I1[:,:,idim],I2[:,:,idim], win_size=S, data_range=data_range)
+            Q_orig[idim] = ssim(I1[:,:,idim],I2[:,:,idim], win_size=S, data_range=data_range, K1=K1, K2=K2)
 
     return np.mean(Q_orig)

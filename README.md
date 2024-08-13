@@ -10,22 +10,27 @@ For further information, refer to our publications on this topic:
 * [[1]](https://ieeexplore.ieee.org/document/10499875?source=authoralert) A. Carbone, R. Restaino, G. Vivone and J. Chanussot, "Model-Based Super-Resolution for Sentinel-5P Data," in IEEE Transactions on Geoscience and Remote Sensing, vol. 62, pp. 1-16, 2024, Art no. 5617716, doi: 10.1109/TGRS.2024.3387877.
 * [[2]](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12733/1273306/Super-resolution-techniques-for-Sentinel-5Pproducts/10.1117/12.2684083.short#_=_) A. Carbone, R. Restaino, and G. Vivone, "Super-resolution techniques for Sentinel-5P products," in Image and Signal Processing for Remote Sensing XXIX, vol. 12733, pp. 39-48, SPIE, 2023. 
 
-# Description of the toolbox
+## Versions
+This is **Version 1.1.0** of the S5P_SISR_Toolbox.
 
-This is **Version 1.0.0** of the S5P_SISR_Toolbox.
-
-Version 1.0.0 represents the first use of super-resolution methods on Sentinel-5P Level-1b data. The algorithms are tested on eight monochromatic images taken from two distinct orbits, corresponding to one channel for each detector. The images were simply cropped along- and across- track, with no additional pre-processing. 
+Version 1.1.0 illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/S5P_SISR_Toolbox_1_1_0/data). The [IQA](/S5P_SISR_Toolbox_1_1_0/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
 The algorithms available are:
   - Interpolation, in particular:
-    + Cubic interpolation
+    + Nearest-neighbour
+    + Linear
+    + Quadratic
+    + Cubic 
+    + Lanczos
+    + 23-tap
   - Non-blind deconvolution solved with Conjugate Gradient Algorithm.
   - DL-based methods, in particular:
-    + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
-    + Our original neural network for S5P, i.e., **S5Net** fine-tuned independently for each channel.
-The ablation study we conducted by substituting the transposed convolutional layer with cubic upsampling in our S5Net is available too.
-      
-This is a simple graphical representation of the proposed methodology, i.e., S5Net.
-![S5Net architecture](/figs/S5Net.jpeg)
+    + Some SOTA neural networks ([SRCNN](https://arxiv.org/abs/1501.00092), [VDSR](https://arxiv.org/abs/1511.04587), [EDSR](https://arxiv.org/abs/1707.02921), [PAN](https://arxiv.org/abs/2010.01073), and [HAT](https://arxiv.org/abs/2205.04437)).
+    + Our original neural network for S5P, i.e., **S5Net** fine-tuned with different strategies:
+      1. _S5Net_: independent channel per channel fine-tuning.
+      2. _GSR_S5Net_st_: static 2-directional cascade fine-tuning.
+      3. _DSR_S5Net_st_: static 8-directional cascade fine-tuning.
+      4. _GSR_S5Net_dyn_: dynamic 2-directional cascade fine-tuning.
+      5. _DSR_S5Net_dyn_: dynamic 8-directional cascade fine-tuning.
 
 ## Environment
 The [_requirements.txt_](/requirements.txt) file contains all the specifications for the environment in which the code will be executed. Please install all the required before using the toolbox by executing the following command:
@@ -41,14 +46,4 @@ When the variable _results_ is true, i.e.,
 ```
 results = True
 ```
-the quality indices are saved as .csv files and the super-resolved images as .mat files into the directory _/results/x{ratio}/{protocol}_, as already shown in the repository. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
-
-## Main results
-The main results we obtained are herein shown. Our main goal was to design algorithms dependent on the imaging model of S5P (__match_ for short). In order to demonstrate that our approach is better than both algorithms usually employed in the literature and the same algorithms we propose but trained independently on how the sensors acquired the images in the first place (__nomatch_ for short), we show the main visual results at full resolution for both the datasets employed, i.e., IN and US. 
-
-![IN dataset](/figs/IN_FR_results.jpeg)
-![US dataset](/figs/US_FR_results.jpeg)
-
-The two approaches (__match_ and __nomatch_), for both the algorithms we designed, are compared also in terms of their pixels' errors on both datasets.
-
-![MSE maps](/figs/MSEs_maps.jpeg)
+the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.

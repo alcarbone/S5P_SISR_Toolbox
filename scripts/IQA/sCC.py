@@ -31,8 +31,6 @@ from scipy.ndimage import sobel
 
 def sCC(I1,I2):
 
-    
-
     I1 = I1.astype('float64')
     I2 = I2.astype('float64')
     I_Lap_1 = np.zeros(I1.shape);
