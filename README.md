@@ -30,7 +30,7 @@ The algorithms available are:
 This is a simple graphical representation of the proposed methodology, i.e., S5Net.
 ![S5Net architecture](/figs/S5Net.jpeg)
 For clarity, we also report here the graphical representation of the time-saving dynamic multi-directional cascade fine-tuning we propose in contrast to the traditional fine-tuning. 
-![Fine-tunings](/figs/finetuning.jpeg)
+![Fine-tunings](/figs/finetuning.png)
 
 ## Environment
 The [_requirements.txt_](/requirements.txt) file contains all the specifications for the environment in which the code will be executed. Please install all the required before using the toolbox by executing the following command:
