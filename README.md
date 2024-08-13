@@ -48,7 +48,7 @@ results = True
 the quality indices are saved as .csv files and the super-resolved images as .mat files into the directory _/results/x{ratio}/{protocol}_, as already shown in the repository. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
 
 ## Main results
-The main results we obtained are herein shown. Our main goal was to design algorithms dependent on the imaging model of S5P (__match_ for short). In order to demonstrate that our approach is better than algorithms usually employed in the literature and the same algorithm we propose but trained independently on how the sensors acquired the images in the first place (__nomatch_ for short), we show the main visual results at full resolution for both the datasets employed, i.e., IN and US. 
+The main results we obtained are herein shown. Our main goal was to design algorithms dependent on the imaging model of S5P (__match_ for short). In order to demonstrate that our approach is better than both algorithms usually employed in the literature and the same algorithms we propose but trained independently on how the sensors acquired the images in the first place (__nomatch_ for short), we show the main visual results at full resolution for both the datasets employed, i.e., IN and US. 
 
 ![IN dataset](/figs/IN_FR_results.jpeg)
 ![US dataset](/figs/US_FR_results.jpeg)
