@@ -26,6 +26,7 @@ home_path = fr"" # insert the path where the dataset is located
 
 date = '20230401';area_of_interest = [29.0, 4.0];im_tag = 'IN'
 #date = '20230709';area_of_interest = [48.0, 23.0];im_tag = 'US'
+#date = '20240804';area_of_interest = [36.0, 11.0];im_tag = 'EG'
 
 #%%
 """
