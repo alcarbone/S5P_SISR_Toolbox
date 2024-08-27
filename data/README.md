@@ -3,6 +3,7 @@ All images in this directory are extracted from level-1b Sentinel-5P radiance pr
 Two scenes are retrieved from:
 * **IN**  -> S5P_OFFL_L1B_RA_BDX_20230401T071049_20230401T085220_28317_03_020100_20230401T103831.nc, X = {2,3,4,5,6,7,8}.
 * **US** -> S5P_OFFL_L1B_RA_BDX_20230709T195054_20230709T213224_29729_03_020100_20230709T232157.nc, X = {2,3,4,5,6,7,8}.
+* **EG** -> S5P_OFFL_L1B_RA_BDX_20240804T102902_20240804T121032_35285_03_020100_20240804T140028.nc, X = {2,3,4,5,6,7,8}.
 
 BD1 is avoided as its signal-to-noise ratio is quite low and its minimum resolution is too low.
 
