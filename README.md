@@ -8,7 +8,9 @@ Two distinct types of S5P data are publicly accessible via the [Copernicus brows
 
 For further information, refer to our publications on this topic:
 * [[1]](https://ieeexplore.ieee.org/document/10499875?source=authoralert) A. Carbone, R. Restaino, G. Vivone and J. Chanussot, "Model-Based Super-Resolution for Sentinel-5P Data," in IEEE Transactions on Geoscience and Remote Sensing, vol. 62, pp. 1-16, 2024, Art no. 5617716, doi: 10.1109/TGRS.2024.3387877.
-* [[2]](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12733/1273306/Super-resolution-techniques-for-Sentinel-5Pproducts/10.1117/12.2684083.short#_=_) A. Carbone, R. Restaino, and G. Vivone, "Super-resolution techniques for Sentinel-5P products," in Image and Signal Processing for Remote Sensing XXIX, vol. 12733, pp. 39-48, SPIE, 2023. 
+* [[2]](https://ieeexplore.ieee.org/document/10663750) A. Carbone, R. Restaino and G. Vivone, "Efficient Hyperspectral Super-resolution of Sentinel-5P Data via Dynamic Multi-directional Cascade Fine-tuning," in IEEE Geoscience and Remote Sensing Letters, doi: 10.1109/LGRS.2024.3454155.
+* [[3]](https://www.spiedigitallibrary.org/conference-proceedings-of-spie/12733/1273306/Super-resolution-techniques-for-Sentinel-5Pproducts/10.1117/12.2684083.short#_=_) A. Carbone, R. Restaino, and G. Vivone, "Super-resolution techniques for Sentinel-5P products," in Image and Signal Processing for Remote Sensing XXIX, vol. 12733, pp. 39-48, SPIE, 2023.
+
 
 ## Versions
 This is **Version 1.1.0** of the S5P_SISR_Toolbox.
@@ -49,3 +51,11 @@ results = True
 the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results_. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
 
 ## Main results
+The scatter plot of the computational complexity in terms of the logarithmic number of fine-tuning iterations and the averaged PSNR obtained on IN, US, and EG datasets for all our fine-tuning approaches on the S5Net.
+![complexity](/figs/complexity.png)
+The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the IN dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
+![complexity](/figs/IN.PNG)
+The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the US dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
+![complexity](/figs/US.PNG)
+The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the EG dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
+![complexity](/figs/EG.PNG)
