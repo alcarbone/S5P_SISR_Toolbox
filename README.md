@@ -52,8 +52,8 @@ the quality indices are saved as .csv files and the super-resolved images as .nc
 
 ## Main results
 The scatter plot of the computational complexity in terms of the logarithmic number of fine-tuning iterations and the averaged PSNR obtained on IN, US, and EG datasets for all our fine-tuning approaches on the S5Net.
-<img alt="alt text" src="/figs/complexity.png" width="500">
-The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the IN dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
+<img src="/figs/complexity.png" width="500">
+\\The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the IN dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
 ![IN](/figs/IN.PNG)
 The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the US dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
 ![US](/figs/US.PNG)
