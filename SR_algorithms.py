@@ -901,11 +901,11 @@ if results:
     new.close()
 
 #%%
-"""DSR-S5Net-st"""
+"""GSR-S5Net-st"""
 
 n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
-epochs_path = f'./trained_models/S5Net/DSR-S5Net-st/{im_tag}/'
+epochs_path = f'./trained_models/S5Net/GSR-S5Net-st/{im_tag}/'
 
 img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
@@ -1001,7 +1001,7 @@ else:
     BRISQUE_SR_DSR_S5Net_st = eng.brisque(scaled_SR)
     
 if results:
-    l.append(['DSR_S5Net_st',Q2n_SR_DSR_S5Net_st,Dlambda_SR_DSR_S5Net_st,Q_SR_DSR_S5Net_st,ERGAS_SR_DSR_S5Net_st,SAM_SR_DSR_S5Net_st,sCC_SR_DSR_S5Net_st,RMSE_SR_DSR_S5Net_st,PSNR_SR_DSR_S5Net_st,time_SR_DSR_S5Net_st]) 
+    l.append(['GSR_S5Net_st',Q2n_SR_DSR_S5Net_st,Dlambda_SR_DSR_S5Net_st,Q_SR_DSR_S5Net_st,ERGAS_SR_DSR_S5Net_st,SAM_SR_DSR_S5Net_st,sCC_SR_DSR_S5Net_st,RMSE_SR_DSR_S5Net_st,PSNR_SR_DSR_S5Net_st,time_SR_DSR_S5Net_st]) 
     
     new = h5py.File(os.path.join(dirs_res_path + '/S5Net.nc'), mode='w')
     new.create_dataset('radiance', data=img_SR_DSR_S5Net_st, dtype=img_SR_DSR_S5Net_st.dtype, shape=img_SR_DSR_S5Net_st.shape)
@@ -1010,11 +1010,11 @@ if results:
     new.close()
     
 #%%
-"""DSR-S5Net-dyn"""
+"""GSR-S5Net-dyn"""
 
 n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
-epochs_path = f'./trained_models/S5Net/DSR-S5Net-dyn/{im_tag}/'
+epochs_path = f'./trained_models/S5Net/GSR-S5Net-dyn/{im_tag}/'
 
 img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
@@ -1110,7 +1110,7 @@ else:
     BRISQUE_SR_DSR_S5Net_dyn = eng.brisque(scaled_SR)
     
 if results:
-    l.append(['DSR_S5Net_dyn',Q2n_SR_DSR_S5Net_dyn,Dlambda_SR_DSR_S5Net_dyn,Q_SR_DSR_S5Net_dyn,ERGAS_SR_DSR_S5Net_dyn,SAM_SR_DSR_S5Net_dyn,sCC_SR_DSR_S5Net_dyn,RMSE_SR_DSR_S5Net_dyn,PSNR_SR_DSR_S5Net_dyn,time_SR_DSR_S5Net_dyn]) 
+    l.append(['GSR_S5Net_dyn',Q2n_SR_DSR_S5Net_dyn,Dlambda_SR_DSR_S5Net_dyn,Q_SR_DSR_S5Net_dyn,ERGAS_SR_DSR_S5Net_dyn,SAM_SR_DSR_S5Net_dyn,sCC_SR_DSR_S5Net_dyn,RMSE_SR_DSR_S5Net_dyn,PSNR_SR_DSR_S5Net_dyn,time_SR_DSR_S5Net_dyn]) 
     
     new = h5py.File(os.path.join(dirs_res_path + '/S5Net.nc'), mode='w')
     new.create_dataset('radiance', data=img_SR_DSR_S5Net_dyn, dtype=img_SR_DSR_S5Net_dyn.dtype, shape=img_SR_DSR_S5Net_dyn.shape)
