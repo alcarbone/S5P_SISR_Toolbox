@@ -907,7 +907,7 @@ n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
 epochs_path = f'./trained_models/S5Net/GSR-S5Net-st/{im_tag}/'
 
-img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
+img_SR_GSR_S5Net_st = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
 tc = 1    
 ker = kernel(tc,ratio,'cubic')
@@ -1016,7 +1016,7 @@ n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
 epochs_path = f'./trained_models/S5Net/GSR-S5Net-dyn/{im_tag}/'
 
-img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
+img_SR_GSR_S5Net_dyn = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
 tc = 1    
 ker = kernel(tc,ratio,'cubic')
@@ -1125,7 +1125,7 @@ n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
 epochs_path = f'./trained_models/S5Net/DSR-S5Net-st/{im_tag}/'
 
-img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
+img_SR_DSR_S5Net_st = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
 tc = 1    
 ker = kernel(tc,ratio,'cubic')
@@ -1234,7 +1234,7 @@ n1 = 64;n2 = 32;n3 = n2;f1 = 9;f2 = 5;f3 = 5;c = 1
 
 epochs_path = f'./trained_models/S5Net/DSR-S5Net-dyn/{im_tag}/'
 
-img_SR_S5Net = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
+img_SR_DSR_S5Net_dyn = np.zeros([img_GT.shape[0],img_GT.shape[1],img_GT.shape[2]])
     
 tc = 1    
 ker = kernel(tc,ratio,'cubic')
