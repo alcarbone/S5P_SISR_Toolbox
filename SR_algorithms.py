@@ -28,8 +28,8 @@ All rights reserved. This work should only be used for nonprofit purposes.
                Original:
                    * S5Net 
                Computationally-efficient:
-                   * DSR-S5Net-st
-                   * DSR-S5Net-dyn
+                   * GSR-S5Net-st
+                   * GSR-S5Net-dyn
                    * DSR-S5Net-st
                    * DSR-S5Net-dyn
                    
@@ -819,7 +819,7 @@ start = time.time()
 
 for bd in range(0,img_GT.shape[2]):
     
-    band_epochs_path = epochs_path + f'band_{bd}/x{ratio}.pth'
+    band_epochs_path = epochs_path + f'band_{bd+1}/x{ratio}.pth'
     
     LR = img_LR[:,:,bd]
     LR1 = np.zeros([LR.shape[0],LR.shape[1],1])
@@ -928,7 +928,7 @@ start = time.time()
 
 for bd in range(0,img_GT.shape[2]):
     
-    band_epochs_path = epochs_path + f'band_{bd}/x{ratio}.pth'
+    band_epochs_path = epochs_path + f'band_{bd+1}/x{ratio}.pth'
     
     LR = img_LR[:,:,bd]
     LR1 = np.zeros([LR.shape[0],LR.shape[1],1])
@@ -980,31 +980,31 @@ for bd in range(0,img_GT.shape[2]):
     
     I_SR = ((I_SR/0.5) * (maxi_val - mini_val)) + mini_val
     
-    img_SR_DSR_S5Net_st[:,:,bd] = I_SR[:,:,0] 
+    img_SR_GSR_S5Net_st[:,:,bd] = I_SR[:,:,0] 
     
 stop = time.time()
 
-time_SR_DSR_S5Net_st = stop-start
+time_SR_GSR_S5Net_st = stop-start
 
 if protocol == 'RR':
-    Q2n_SR_DSR_S5Net_st, Dlambda_SR_DSR_S5Net_st, Q_SR_DSR_S5Net_st, ERGAS_SR_DSR_S5Net_st, SAM_SR_DSR_S5Net_st, sCC_SR, RMSE_SR_DSR_S5Net_st, PSNR_SR_DSR_S5Net_st = \
-        indexes_evaluation_SR(img_SR_DSR_S5Net_st,img_LR,img_GT,ratio,radiance_range,GNyq_xs,GNyq_ys,max_img,Qblocks_size,flag_cut_bounds,dim_cut,th_values,K1,K2)
+    Q2n_SR_GSR_S5Net_st, Dlambda_SR_GSR_S5Net_st, Q_SR_GSR_S5Net_st, ERGAS_SR_GSR_S5Net_st, SAM_SR_GSR_S5Net_st, sCC_SR, RMSE_SR_GSR_S5Net_st, PSNR_SR_GSR_S5Net_st = \
+        indexes_evaluation_SR(img_SR_GSR_S5Net_st,img_LR,img_GT,ratio,radiance_range,GNyq_xs,GNyq_ys,max_img,Qblocks_size,flag_cut_bounds,dim_cut,th_values,K1,K2)
     
-    sCC_SR_DSR_S5Net_st = sCC_SR[0]
+    sCC_SR_GSR_S5Net_st = sCC_SR[0]
 
 else:
-    min_radiance = np.amin(img_SR_DSR_S5Net_st) 
-    max_radiance = np.amax(img_SR_DSR_S5Net_st) 
-    scaled_SR = (img_SR_DSR_S5Net_st - min_radiance) / max_radiance
+    min_radiance = np.amin(img_SR_GSR_S5Net_st) 
+    max_radiance = np.amax(img_SR_GSR_S5Net_st) 
+    scaled_SR = (img_SR_GSR_S5Net_st - min_radiance) / max_radiance
     
     scaled_SR = scaled_SR.squeeze()
-    BRISQUE_SR_DSR_S5Net_st = eng.brisque(scaled_SR)
+    BRISQUE_SR_GSR_S5Net_st = eng.brisque(scaled_SR)
     
 if results:
-    l.append(['GSR_S5Net_st',Q2n_SR_DSR_S5Net_st,Dlambda_SR_DSR_S5Net_st,Q_SR_DSR_S5Net_st,ERGAS_SR_DSR_S5Net_st,SAM_SR_DSR_S5Net_st,sCC_SR_DSR_S5Net_st,RMSE_SR_DSR_S5Net_st,PSNR_SR_DSR_S5Net_st,time_SR_DSR_S5Net_st]) 
+    l.append(['GSR_S5Net_st',Q2n_SR_GSR_S5Net_st,Dlambda_SR_GSR_S5Net_st,Q_SR_GSR_S5Net_st,ERGAS_SR_GSR_S5Net_st,SAM_SR_GSR_S5Net_st,sCC_SR_GSR_S5Net_st,RMSE_SR_GSR_S5Net_st,PSNR_SR_GSR_S5Net_st,time_SR_GSR_S5Net_st]) 
     
-    new = h5py.File(os.path.join(dirs_res_path + '/S5Net.nc'), mode='w')
-    new.create_dataset('radiance', data=img_SR_DSR_S5Net_st, dtype=img_SR_DSR_S5Net_st.dtype, shape=img_SR_DSR_S5Net_st.shape)
+    new = h5py.File(os.path.join(dirs_res_path + '/GSR_S5Net_st.nc'), mode='w')
+    new.create_dataset('radiance', data=img_SR_GSR_S5Net_st, dtype=img_SR_GSR_S5Net_st.dtype, shape=img_SR_GSR_S5Net_st.shape)
     new.create_dataset('latitude', data=s5p_lat, dtype=s5p_lat.dtype, shape=s5p_lat.shape)
     new.create_dataset('longitude', data=s5p_lon, dtype=s5p_lon.dtype, shape=s5p_lon.shape)
     new.close()
@@ -1037,7 +1037,7 @@ start = time.time()
 
 for bd in range(0,img_GT.shape[2]):
     
-    band_epochs_path = epochs_path + f'band_{bd}/x{ratio}.pth'
+    band_epochs_path = epochs_path + f'band_{bd+1}/x{ratio}.pth'
     
     LR = img_LR[:,:,bd]
     LR1 = np.zeros([LR.shape[0],LR.shape[1],1])
@@ -1089,31 +1089,31 @@ for bd in range(0,img_GT.shape[2]):
     
     I_SR = ((I_SR/0.5) * (maxi_val - mini_val)) + mini_val
     
-    img_SR_DSR_S5Net_dyn[:,:,bd] = I_SR[:,:,0] 
+    img_SR_GSR_S5Net_dyn[:,:,bd] = I_SR[:,:,0] 
     
 stop = time.time()
 
-time_SR_DSR_S5Net_dyn = stop-start
+time_SR_GSR_S5Net_dyn = stop-start
 
 if protocol == 'RR':
-    Q2n_SR_DSR_S5Net_dyn, Dlambda_SR_DSR_S5Net_dyn, Q_SR_DSR_S5Net_dyn, ERGAS_SR_DSR_S5Net_dyn, SAM_SR_DSR_S5Net_dyn, sCC_SR, RMSE_SR_DSR_S5Net_dyn, PSNR_SR_DSR_S5Net_dyn = \
-        indexes_evaluation_SR(img_SR_DSR_S5Net_dyn,img_LR,img_GT,ratio,radiance_range,GNyq_xs,GNyq_ys,max_img,Qblocks_size,flag_cut_bounds,dim_cut,th_values,K1,K2)
+    Q2n_SR_GSR_S5Net_dyn, Dlambda_SR_GSR_S5Net_dyn, Q_SR_GSR_S5Net_dyn, ERGAS_SR_GSR_S5Net_dyn, SAM_SR_GSR_S5Net_dyn, sCC_SR, RMSE_SR_GSR_S5Net_dyn, PSNR_SR_GSR_S5Net_dyn = \
+        indexes_evaluation_SR(img_SR_GSR_S5Net_dyn,img_LR,img_GT,ratio,radiance_range,GNyq_xs,GNyq_ys,max_img,Qblocks_size,flag_cut_bounds,dim_cut,th_values,K1,K2)
     
-    sCC_SR_DSR_S5Net_dyn = sCC_SR[0]
+    sCC_SR_GSR_S5Net_dyn = sCC_SR[0]
 
 else:
-    min_radiance = np.amin(img_SR_DSR_S5Net_dyn) 
-    max_radiance = np.amax(img_SR_DSR_S5Net_dyn) 
-    scaled_SR = (img_SR_DSR_S5Net_dyn - min_radiance) / max_radiance
+    min_radiance = np.amin(img_SR_GSR_S5Net_dyn) 
+    max_radiance = np.amax(img_SR_GSR_S5Net_dyn) 
+    scaled_SR = (img_SR_GSR_S5Net_dyn - min_radiance) / max_radiance
     
     scaled_SR = scaled_SR.squeeze()
-    BRISQUE_SR_DSR_S5Net_dyn = eng.brisque(scaled_SR)
+    BRISQUE_SR_GSR_S5Net_dyn = eng.brisque(scaled_SR)
     
 if results:
-    l.append(['GSR_S5Net_dyn',Q2n_SR_DSR_S5Net_dyn,Dlambda_SR_DSR_S5Net_dyn,Q_SR_DSR_S5Net_dyn,ERGAS_SR_DSR_S5Net_dyn,SAM_SR_DSR_S5Net_dyn,sCC_SR_DSR_S5Net_dyn,RMSE_SR_DSR_S5Net_dyn,PSNR_SR_DSR_S5Net_dyn,time_SR_DSR_S5Net_dyn]) 
+    l.append(['GSR_S5Net_dyn',Q2n_SR_GSR_S5Net_dyn,Dlambda_SR_GSR_S5Net_dyn,Q_SR_GSR_S5Net_dyn,ERGAS_SR_GSR_S5Net_dyn,SAM_SR_GSR_S5Net_dyn,sCC_SR_GSR_S5Net_dyn,RMSE_SR_GSR_S5Net_dyn,PSNR_SR_GSR_S5Net_dyn,time_SR_GSR_S5Net_dyn]) 
     
-    new = h5py.File(os.path.join(dirs_res_path + '/S5Net.nc'), mode='w')
-    new.create_dataset('radiance', data=img_SR_DSR_S5Net_dyn, dtype=img_SR_DSR_S5Net_dyn.dtype, shape=img_SR_DSR_S5Net_dyn.shape)
+    new = h5py.File(os.path.join(dirs_res_path + '/GSR_S5Net_dyn.nc'), mode='w')
+    new.create_dataset('radiance', data=img_SR_GSR_S5Net_dyn, dtype=img_SR_GSR_S5Net_dyn.dtype, shape=img_SR_GSR_S5Net_dyn.shape)
     new.create_dataset('latitude', data=s5p_lat, dtype=s5p_lat.dtype, shape=s5p_lat.shape)
     new.create_dataset('longitude', data=s5p_lon, dtype=s5p_lon.dtype, shape=s5p_lon.shape)
     new.close()
@@ -1146,7 +1146,7 @@ start = time.time()
 
 for bd in range(0,img_GT.shape[2]):
     
-    band_epochs_path = epochs_path + f'band_{bd}/x{ratio}.pth'
+    band_epochs_path = epochs_path + f'band_{bd+1}/x{ratio}.pth'
     
     LR = img_LR[:,:,bd]
     LR1 = np.zeros([LR.shape[0],LR.shape[1],1])
@@ -1221,7 +1221,7 @@ else:
 if results:
     l.append(['DSR_S5Net_st',Q2n_SR_DSR_S5Net_st,Dlambda_SR_DSR_S5Net_st,Q_SR_DSR_S5Net_st,ERGAS_SR_DSR_S5Net_st,SAM_SR_DSR_S5Net_st,sCC_SR_DSR_S5Net_st,RMSE_SR_DSR_S5Net_st,PSNR_SR_DSR_S5Net_st,time_SR_DSR_S5Net_st]) 
     
-    new = h5py.File(os.path.join(dirs_res_path + '/S5Net.nc'), mode='w')
+    new = h5py.File(os.path.join(dirs_res_path + '/DSR_S5Net_st.nc'), mode='w')
     new.create_dataset('radiance', data=img_SR_DSR_S5Net_st, dtype=img_SR_DSR_S5Net_st.dtype, shape=img_SR_DSR_S5Net_st.shape)
     new.create_dataset('latitude', data=s5p_lat, dtype=s5p_lat.dtype, shape=s5p_lat.shape)
     new.create_dataset('longitude', data=s5p_lon, dtype=s5p_lon.dtype, shape=s5p_lon.shape)
@@ -1255,7 +1255,7 @@ start = time.time()
 
 for bd in range(0,img_GT.shape[2]):
     
-    band_epochs_path = epochs_path + f'band_{bd}/x{ratio}.pth'
+    band_epochs_path = epochs_path + f'band_{bd+1}/x{ratio}.pth'
     
     LR = img_LR[:,:,bd]
     LR1 = np.zeros([LR.shape[0],LR.shape[1],1])
@@ -1330,7 +1330,7 @@ else:
 if results:
     l.append(['DSR_S5Net_dyn',Q2n_SR_DSR_S5Net_dyn,Dlambda_SR_DSR_S5Net_dyn,Q_SR_DSR_S5Net_dyn,ERGAS_SR_DSR_S5Net_dyn,SAM_SR_DSR_S5Net_dyn,sCC_SR_DSR_S5Net_dyn,RMSE_SR_DSR_S5Net_dyn,PSNR_SR_DSR_S5Net_dyn,time_SR_DSR_S5Net_dyn]) 
     
-    new = h5py.File(os.path.join(dirs_res_path + '/S5Net.nc'), mode='w')
+    new = h5py.File(os.path.join(dirs_res_path + '/DSR_S5Net_dyn.nc'), mode='w')
     new.create_dataset('radiance', data=img_SR_DSR_S5Net_dyn, dtype=img_SR_DSR_S5Net_dyn.dtype, shape=img_SR_DSR_S5Net_dyn.shape)
     new.create_dataset('latitude', data=s5p_lat, dtype=s5p_lat.dtype, shape=s5p_lat.shape)
     new.create_dataset('longitude', data=s5p_lon, dtype=s5p_lon.dtype, shape=s5p_lon.shape)
