@@ -4,7 +4,11 @@ A set of single-image super-resolution (SISR) algorithms designed specifically f
 
 S5P is a single-satellite mission launched by the European Space Agency (ESA) as part of the Copernicus program to monitor a large amount of gaseous air pollutants. Some helpful information on S5P is accessible on [ESA's official wiki](https://sentiwiki.copernicus.eu/web/s5p-mission). 
 
-Two distinct types of S5P data are publicly accessible via the [Copernicus browser](https://browser.dataspace.copernicus.eu/?zoom=5&lat=50.16282&lng=20.78613&themeId=DEFAULT-THEME&visualizationUrl=U2FsdGVkX19w36SwRKT6qYfJpcRdRdP6X9Z8Cc7xpWPmL6BW1rnaazx1QB4tTcqiQ58clVWtTZih7gZABvqUZFPCvgWbJDDvyxY7AoIg%2BnNKuiMDflT7morMQZBHoJjg&datasetId=S2_L2A_CDAS&demSource3D=%22MAPZEN%22&cloudCoverage=30&dateMode=SINGLE): Level-1b radiance data is split per detector's halves (S5P's payload, TROPOMI, has four detectors), whereas Level-2 data is split per product. More information about the data is publicly available in [S5P official reports](https://sentiwiki.copernicus.eu/web/s5p-documents). We chose to work with Level-1b images.
+Two distinct types of S5P data are publicly accessible via the [Copernicus browser](https://browser.dataspace.copernicus.eu/?zoom=5&lat=50.16282&lng=20.78613&themeId=DEFAULT-THEME&visualizationUrl=U2FsdGVkX19w36SwRKT6qYfJpcRdRdP6X9Z8Cc7xpWPmL6BW1rnaazx1QB4tTcqiQ58clVWtTZih7gZABvqUZFPCvgWbJDDvyxY7AoIg%2BnNKuiMDflT7morMQZBHoJjg&datasetId=S2_L2A_CDAS&demSource3D=%22MAPZEN%22&cloudCoverage=30&dateMode=SINGLE): Level-1b radiance data is split per detector's halves (S5P's payload, TROPOMI, has four detectors), whereas Level-2 data is split per product. More information about the data is publicly available in [S5P official reports](https://sentiwiki.copernicus.eu/web/s5p-documents). 
+
+We chose to work with Level-1b images mainly for two reasons:
+1. This allows us to prevent all of the degradation that happens during the complicated sequence of algorithms between level-1b and level-2 data.
+2. It is therefore possible to generalise the applications. You are free to use the images exactly as they are given as a result or to extract maps of any preferred contaminant afterwards.
 
 For further information, refer to our publications on this topic:
 * [[1]](https://ieeexplore.ieee.org/document/10499875?source=authoralert) A. Carbone, R. Restaino, G. Vivone and J. Chanussot, "Model-Based Super-Resolution for Sentinel-5P Data," in IEEE Transactions on Geoscience and Remote Sensing, vol. 62, pp. 1-16, 2024, Art no. 5617716, doi: 10.1109/TGRS.2024.3387877.
@@ -15,7 +19,7 @@ For further information, refer to our publications on this topic:
 ## Versions
 This is **Version 1.1.0** of the S5P_SISR_Toolbox.
 
-Version 1.1.0 illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on two images with 3445 spectral channels taken from two different orbits. The images were pre-processed, as described [here](/data). The [IQA](/scripts/IQA) directory was changed to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
+Version 1.1.0 illustrates the time-saving application of super-resolution algorithms on Sentinel-5P Level-1b data. The methods are indeed evaluated on three images with 3445 spectral channels taken from three different orbits. The images were pre-processed, as described [here](/data). The [IQA](/scripts/IQA) directory was changed in comparison to the previous version to render the computation of RR indexes more robust in relation to the range of the images and to save time is the calculation of some of them.
 The algorithms available are:
   - Interpolation, in particular:
     + Cubic interpolation
@@ -35,7 +39,7 @@ For clarity, we also report here the graphical representation of the time-saving
 ![Fine-tunings](/figs/finetunings.png)
 
 ## Environment
-The [_requirements.txt_](/requirements.txt) file contains all the specifications for the environment in which the code will be executed. Please install all the required before using the toolbox by executing the following command:
+The [_requirements.txt_](/requirements.txt) file contains all the specifications for the environment in which the code will be executed. Please install all the requirements before using the toolbox by executing the following command:
 
 ```
 pip install -r requirements.txt
@@ -53,7 +57,7 @@ the quality indices are saved as .csv files and the super-resolved images as .nc
 ## Main results
 The scatter plot of the computational complexity in terms of the logarithmic number of fine-tuning iterations and the averaged PSNR obtained on IN, US, and EG datasets for all our fine-tuning approaches on the S5Net.
 <p align="center">
-  <img src="/figs/complexity.png" width="500">
+  <img src="/figs/complexity.png" width="450">
   
 The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the IN dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
 ![IN](/figs/IN.PNG)
