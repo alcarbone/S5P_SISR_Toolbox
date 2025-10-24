@@ -77,27 +77,27 @@ The following table summarises their primary characteristics.
 **Table:** Overview of the ten selected orbits used in the analyses, including their tag, acquisition date, orbit number, central coordinates (rounded to one decimal place), and the corresponding central location. The orbits are ordered alphabetically by their tag.
 
 The following figures display the arctangent of the difference between the MSE maps obtained using a PSF-unaware version of S5Net and our PSF-aware S5Net for a scaling factor of 4 and an area of 128 × 128 pixels from all original images. The same colour scale is applied across all maps. Green regions indicate areas where the PSF-aware approach achieves a lower reconstruction error.
-![mse_maps_1](/figs/mse_maps_x4_RR_1.PNG)
-![mse_maps_2](/figs/mse_maps_x4_RR_2.PNG)
+![mse_maps_1](/figs/mse_maps_x4_RR_1.png)
+![mse_maps_2](/figs/mse_maps_x4_RR_2.png)
 
 The following figures display the ground-truth image, the result of bicubic interpolation, the output of a state-of-the-art approach (SRCNN), and the results obtained with the PSF-unaware and PSF-aware versions of S5Net, for a scaling factor of 4 and an area of 128 × 128 pixels extracted from the original images.
-![RR_1](/figs/imgs_x4_RR_1-1.PNG)
-![RR_2](/figs/imgs_x4_RR_2-1.PNG)
+![RR_1](/figs/imgs_x4_RR_1-1.png)
+![RR_2](/figs/imgs_x4_RR_2-1.png)
 
 The following figures display the results of bicubic interpolation, a state-of-the-art method (SRCNN), and the PSF-unaware and PSF-aware versions of S5Net, for a scaling factor of 4. Each example corresponds to an area of 512 × 512 pixels, with an additional zoomed-in region of 128 × 128 pixels extracted from the original images.
-![FR_1](/figs/imgs_x4_FR_1-1.PNG)
-![FR_2](/figs/imgs_x4_FR_2-1.PNG)
-![FR_3](/figs/imgs_x4_FR_3-1.PNG)
-![FR_4](/figs/imgs_x4_FR_4-1.PNG)
-![FR_5](/figs/imgs_x4_FR_5-1.PNG)
+![FR_1](/figs/imgs_x4_FR_1-1.png)
+![FR_2](/figs/imgs_x4_FR_2-1.png)
+![FR_3](/figs/imgs_x4_FR_3-1.png)
+![FR_4](/figs/imgs_x4_FR_4-1.png)
+![FR_5](/figs/imgs_x4_FR_5-1.png)
 
 Scatter plot of the computational complexity, expressed as the logarithm of the number of fine-tuning iterations, versus the average PSNR obtained on the IN dataset for all proposed, state-of-the-art, and baseline fine-tuning approaches applied to S5Net.
 <p align="center">
   <img src="/figs/PSNR_vs_epochs-1.png" width="450">
   
 The ground-truth images are compared with the super-resolved outputs of several algorithms, including the original non-efficient S5Net and our best-performing method, DSR S5Net-dynamic, for close-ups of 128 × 128 for the CS, IN, IT, RS and US datasets, shown in false-colour representation.
-![CS](/figs/CS_zoom-1.PNG)
-![IN](/figs/IN_zoom-1.PNG)
-![IT](/figs/IT_zoom-1.PNG)
-![RS](/figs/RS_zoom-1.PNG)
-![US](/figs/US_zoom-1.PNG)
+![CS](/figs/CS_zoom-1.png)
+![IN](/figs/IN_zoom-1.png)
+![IT](/figs/IT_zoom-1.png)
+![RS](/figs/RS_zoom-1.png)
+![US](/figs/US_zoom-1.png)
