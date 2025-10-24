@@ -78,7 +78,7 @@ The following table summarises their primary characteristics.
 
 The following figures display the arctangent of the difference between the MSE maps obtained using a PSF-unaware version of S5Net and our PSF-aware S5Net for a scaling factor of 4 and an area of 128 × 128 pixels from all original images. The same colour scale is applied across all maps. Green regions indicate areas where the PSF-aware approach achieves a lower reconstruction error.
 ![mse_maps_1](/figs/mse_maps_x4_RR_1.png)
-![mse_maps_2](/figs/mse_maps_x4_RR_2.png)
+![mse_maps_2](/figs/mse_maps_x4_RR_2-1.png)
 
 The following figures display the ground-truth image, the result of bicubic interpolation, the output of a state-of-the-art approach (SRCNN), and the results obtained with the PSF-unaware and PSF-aware versions of S5Net, for a scaling factor of 4 and an area of 128 × 128 pixels extracted from the original images.
 ![RR_1](/figs/imgs_x4_RR_1-1.png)
