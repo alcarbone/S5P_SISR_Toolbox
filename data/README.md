@@ -12,6 +12,18 @@ The covered areas are:
 * RS: Red sea.
 * US: California and part of Mexico.
 
+The central locations of each image are:
+* AG: 32.18942° N, 4.59026° E
+* CG: 1.22352° S, 15.08504° E
+* CS: 40.04674° N, 55.88387° E
+* EE: 47.69025° N, 22.13824° E
+* EG: 25.50735° N, 28.49705° E
+* FR: 44.08104° N, 2.70121° E
+* IN: 16.51471° N, 79.75391° E
+* IT: 41.97096° N, 11.75084° E
+* RS: 17.39693° N, 41.84284° E
+* US: 35.50676° N, 113.53700° W
+
 The original files' date and orbit number from which the images are retrieved are:
 * AG: 20200623, 13962.
 * CG: 20200623, 13962.
