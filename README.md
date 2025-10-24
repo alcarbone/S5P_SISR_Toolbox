@@ -60,6 +60,7 @@ the quality indices are saved as .csv files and the super-resolved images as .nc
 All ground-truth (GT) images that we preprocessed are shown below.
 <p align="center">
   <img src="/figs/all_GTs.png">
+  
 The following table summarises their primary characteristics.
 
 | **Tag** | **Date** | **Orbit** | **Coordinates** | **Location** |
@@ -74,7 +75,6 @@ The following table summarises their primary characteristics.
 | IT | 2019-08-04 | 09365 | (42.0° N, 11.8° E) | Italy |
 | RS | 2019-08-04 | 09364 | (17.4° N, 41.8° E) | Red Sea |
 | US | 2023-07-09 | 29729 | (35.5° N, 113.5° W) | Arizona |
-**Table:** Overview of the ten selected orbits used in the analyses, including their tag, acquisition date, orbit number, central coordinates (rounded to one decimal place), and the corresponding central location. The orbits are ordered alphabetically by their tag.
 
 The following figures display the arctangent of the difference between the MSE maps obtained using a PSF-unaware version of S5Net and our PSF-aware S5Net for a scaling factor of 4 and an area of 128 × 128 pixels from all original images. The same colour scale is applied across all maps. Green regions indicate areas where the PSF-aware approach achieves a lower reconstruction error.
 ![mse_maps_1](/figs/mse_maps_x4_RR_1.png)
