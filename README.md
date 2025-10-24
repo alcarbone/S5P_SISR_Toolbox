@@ -57,13 +57,47 @@ results = True
 the quality indices are saved as .csv files and the super-resolved images as .nc files into the directory _/results_. All utility scripts are always available in the directory _/scripts_, data to test on is available in the directory _/data_ and pre-trained models in the directory _/trained_models_.
 
 ## Main results
-The scatter plot of the computational complexity in terms of the logarithmic number of fine-tuning iterations and the averaged PSNR obtained on IN, US, and EG datasets for all our fine-tuning approaches on the S5Net.
+All ground-truth (GT) images that we preprocessed are shown below.
 <p align="center">
-  <img src="/figs/complexity.png" width="450">
+  <img src="/figs/all_GTs.png">
+The following table summarises their primary characteristics.
+
+| **Tag** | **Date** | **Orbit** | **Coordinates** | **Location** |
+|:--------|:----------|:-----------|:----------------|:-------------|
+| AG | 2020-06-23 | 13962 | (32.2° N, 4.6° E) | Algeria |
+| CG | 2020-06-23 | 13962 | (1.2° S, 15.1° E) | Congo Republic |
+| CS | 2020-06-23 | 13960 | (40.0° N, 55.9° E) | Caspian Sea |
+| EE | 2020-06-23 | 13961 | (47.7° N, 22.1° E) | Romania |
+| EG | 2024-08-04 | 35285 | (25.5° N, 28.5° E) | Egypt |
+| FR | 2020-06-23 | 13962 | (44.1° N, 2.7° E) | France |
+| IN | 2023-04-01 | 28317 | (16.5° N, 79.8° E) | India |
+| IT | 2019-08-04 | 09365 | (42.0° N, 11.8° E) | Italy |
+| RS | 2019-08-04 | 09364 | (17.4° N, 41.8° E) | Red Sea |
+| US | 2023-07-09 | 29729 | (35.5° N, 113.5° W) | Arizona |
+**Table:** Overview of the ten selected orbits used in the analyses, including their tag, acquisition date, orbit number, central coordinates (rounded to one decimal place), and the corresponding central location. The orbits are ordered alphabetically by their tag.
+
+The following figures display the arctangent of the difference between the MSE maps obtained using a PSF-unaware version of S5Net and our PSF-aware S5Net for a scaling factor of 4 and an area of 128 × 128 pixels from all original images. The same colour scale is applied across all maps. Green regions indicate areas where the PSF-aware approach achieves a lower reconstruction error.
+![mse_maps_1](/figs/mse_maps_x4_RR_1.PNG)
+![mse_maps_2](/figs/mse_maps_x4_RR_2.PNG)
+
+The following figures display the ground-truth image, the result of bicubic interpolation, the output of a state-of-the-art approach (SRCNN), and the results obtained with the PSF-unaware and PSF-aware versions of S5Net, for a scaling factor of 4 and an area of 128 × 128 pixels extracted from the original images.
+![RR_1](/figs/imgs_x4_RR_1-1.PNG)
+![RR_2](/figs/imgs_x4_RR_2-1.PNG)
+
+The following figures display the results of bicubic interpolation, a state-of-the-art method (SRCNN), and the PSF-unaware and PSF-aware versions of S5Net, for a scaling factor of 4. Each example corresponds to an area of 512 × 512 pixels, with an additional zoomed-in region of 128 × 128 pixels extracted from the original images.
+![FR_1](/figs/imgs_x4_FR_1-1.PNG)
+![FR_2](/figs/imgs_x4_FR_2-1.PNG)
+![FR_3](/figs/imgs_x4_FR_3-1.PNG)
+![FR_4](/figs/imgs_x4_FR_4-1.PNG)
+![FR_5](/figs/imgs_x4_FR_5-1.PNG)
+
+Scatter plot of the computational complexity, expressed as the logarithm of the number of fine-tuning iterations, versus the average PSNR obtained on the IN dataset for all proposed, state-of-the-art, and baseline fine-tuning approaches applied to S5Net.
+<p align="center">
+  <img src="/figs/PSNR_vs_epochs-1.png" width="450">
   
-The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the IN dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
-![IN](/figs/IN.PNG)
-The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the US dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
-![US](/figs/US.PNG)
-The ground-truth (GT) compared to the super-resolved images obtained by some of all the exploited algorithms, including the original non-efficient S5Net and the best result we propose (DSR-S5Net-dyn) for a close-up of the EG dataset in a false-colour representation in which a single channel of SWIR, NIR, and UV are respectively employed as red, green, and blue.
-![EG](/figs/EG.PNG)
+The ground-truth images are compared with the super-resolved outputs of several algorithms, including the original non-efficient S5Net and our best-performing method, DSR S5Net-dynamic, for close-ups of 128 × 128 for the CS, IN, IT, RS and US datasets, shown in false-colour representation.
+![CS](/figs/CS_zoom-1.PNG)
+![IN](/figs/IN_zoom-1.PNG)
+![IT](/figs/IT_zoom-1.PNG)
+![RS](/figs/RS_zoom-1.PNG)
+![US](/figs/US_zoom-1.PNG)
